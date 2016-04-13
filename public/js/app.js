@@ -8,12 +8,18 @@
   ])
   .config(Router);
 
-  Router.$inject = ["$stateProvider"];
-  function Router($stateProvider){
+  Router.$inject = ["$stateProvider", "$locationProvider", "$urlRouterProvider"];
+  function Router($stateProvider, $locationProvider, $urlRouterProvider){
+    $locationProvider.html5Mode(true);
     $stateProvider
-    .state("main", {
+    .state("servicesIndex", {
       url:      "/",
       template: "This is working"
+    })
+    .state("servicesShow", {
+      url:      "/service/:name",
+      template: "This is the services show route"
     });
+    $urlRouterProvider.otherwise("/");
   }
 })();

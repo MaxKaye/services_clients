@@ -1,5 +1,6 @@
 var express     = require("express");
 var app         = express();
+var mongoose = require("./db/connection");
 
 app.use("/", express.static("public"));
 

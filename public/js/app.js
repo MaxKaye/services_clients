@@ -7,6 +7,7 @@
     "ngResource"
   ])
   .config(Router)
+  .factory("Service", serviceFactory)
   .controller("servicesIndexC", servicesIndexCtrl)
   .controller("servicesShowC", servicesShowCtrl);
 
@@ -29,9 +30,20 @@
     $urlRouterProvider.otherwise("/");
   }
 
-  function servicesIndexCtrl(){
-    var vm  = this;
-    vm.test = "This is the services index.";
+  function serviceFactory(){
+    var Service = {};
+    Service.all = [
+      { name: "Test1" },
+      { name: "Test2" },
+      { name: "Test3" }
+    ];
+    return Service;
+  }
+
+  servicesIndexCtrl.$inject = ["Service"];
+  function servicesIndexCtrl(Service){
+    var vm      = this;
+    vm.services = Service.all;
   }
 
   servicesShowCtrl.$inject = ["$stateParams"];

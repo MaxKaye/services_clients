@@ -1,1 +1,5 @@
-<h2>{{sIndexVM.test}}</h2>
+<ul>
+  <li data-ng-repeat="service in sIndexVM.services">
+    <a data-ui-sref="servicesShow(service)">{{service.name}}</a>
+  </li>
+</ul>
